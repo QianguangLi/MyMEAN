@@ -1,0 +1,10 @@
+<section ng-controller="HomePageController">
+    <p>登录</p>
+    <div>
+        账号:<input type="text" ng-model="user.username"/>
+        <br/>
+        密码:<input type="password" ng-model="user.password"/> <b>{{signinerrmsg}}</b>
+        <br/>
+        <input type="submit" value="登录" ng-click="signin()"/>
+    </div>
+</section>

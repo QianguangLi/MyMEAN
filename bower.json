@@ -1,0 +1,26 @@
+{
+  "name": "MyMEAN",
+  "description": "我的MEAN",
+  "main": "app.js",
+  "authors": [
+    "inggg"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "MEAN"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.3",
+    "angular-route": "^1.6.3"
+  }
+}

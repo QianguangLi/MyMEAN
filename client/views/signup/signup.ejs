@@ -1,0 +1,12 @@
+<section ng-controller="HomePageController">
+    <p>注册</p>
+    <div>
+        账号:<input type="text" ng-model="user.username"/> <b>{{usernameErrMsg}}</b>
+        <br/>
+        密码:<input type="password" ng-model="user.password"/> <b>{{passwordErrMsg}}</b>
+        <br/>
+        确认密码:<input type="password" ng-model="user.confirmpassword"/> <b>{{confirmpasswordErrMsg}}</b>
+        <br/>
+        <input type="submit" value="提交" ng-click="signup()"/>
+    </div>
+</section>
