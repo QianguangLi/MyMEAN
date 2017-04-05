@@ -1,7 +1,9 @@
 /**
  * Created by LQG on 2017/3/30.
  */
-homePageApp.controller("HomePageController", function ($scope, $http, $window) {
+app.controller("HomePageController", function ($scope, $http, $window, AuthService, $rootScope) {
+
+  $scope.showSign = !$rootScope.isLogin;
 
   $http.get("/getBanerUrl")
     .then(function (response) {
@@ -60,14 +62,17 @@ homePageApp.controller("HomePageController", function ($scope, $http, $window) {
     } else {
       $scope.signinerrmsg = "";
     }
-    $http.post("/signin", user)
-      .then(function (response) {
-        if (response.data.errmsg) {
-          $scope.signinerrmsg = response.data.errmsg;
-          // $window.location.href = "#/signin";
-        } else {
-          $window.location.href = $window.document.referrer;
-        }
-      });
+    AuthService.login(user, function (isLogin, res) {
+      if (!isLogin) {
+        $scope.signinerrmsg = res;
+        $window.location.href = "#/signin";
+      } else {
+        $window.location.href = $window.document.referrer;
+      }
+    });
+  }
+
+  $scope.signout = function () {
+    console.log("signout");
   }
 });

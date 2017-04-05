@@ -1,6 +1,31 @@
 <section ng-controller="ArtileController">
-    这是博客列表页面
     <div>
-        <button ng-click="addArticle()">添加博客</button>
+        博客列表
+        <button ng-click="addArticle()">写博客</button>
+    </div>
+    <br>
+    <a href="/#/blog">全部</a>
+    <div>
+        <table border="1" bordercolor="gray">
+            <tr>
+                <td>标题</td>
+                <td>内容摘要</td>
+                <td>作者</td>
+                <td>日期</td>
+                <td>操作</td>
+            </tr>
+            <tr ng-repeat="blog in blogs">
+                <td>{{blog.title}}</td>
+                <td>{{blog.content}}</td>
+                <td>
+                    <a href="/#/blog/{{blog.author._id}}">{{blog.author.username}}</a>
+                </td>
+                <td>{{blog.createDate}}</td>
+                <td>
+                    <a href="#">修改</a>
+                    <a href="#">删除</a>
+                </td>
+            </tr>
+        </table>
     </div>
 </section>

@@ -23,7 +23,6 @@ exports.getBanerURL = function (req, res, next) {
 }
 
 exports.checkLogin = function (req, res, next) {
-  console.log(req.session);
   if (req.session.user) {
     next();
   } else {
@@ -33,6 +32,7 @@ exports.checkLogin = function (req, res, next) {
 }
 
 exports.isSignined = function (req, res) {
+  console.log(req.session.user);
   res.json({isLogin: true, user: req.session.user});
 }
 
@@ -52,14 +52,21 @@ exports.signup = function (req, res) {
 exports.signin = function (req, res) {
   delete req.body.confirmpassword;
   passport.authenticate('local', function (err, user) {
+    console.log(user);
     if (!user) {
       res.json({errCode:300007, errmsg:"密码错误"});
       return;
     }
-    delete user.salt;
-    delete user.password;
     req.session.user = user;
     res.json(user);
+    // req.logIn(user, function (err) {
+    //   if (err) {
+    //     console.log(err);
+    //     res.json({errCode:300008, errmsg:"登录失败"});
+    //   } else {
+    //     res.json(user);
+    //   }
+    // });
   })(req, res);
 
   //验证数据步骤省略
