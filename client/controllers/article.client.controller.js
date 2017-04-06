@@ -3,7 +3,9 @@
  */
 app.controller("ArtileController", function ($scope, $http, $window, $rootScope, $routeParams) {
   console.log($routeParams.id);
-  var blogListUrl = $routeParams.id === undefined ? "/article/list" : "/article/list/"+$routeParams.id;
+  console.log($routeParams.page);
+
+  var blogListUrl = $routeParams.id === undefined ? "/article/list?page=1" : "/article/list/"+$routeParams.id+"?page=1";
   $http.get(blogListUrl)
     .then(function (response) {
       $scope.blogs = response.data.blogs;

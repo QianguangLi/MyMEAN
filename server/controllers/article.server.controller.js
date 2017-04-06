@@ -53,6 +53,7 @@ exports.updateBlog = function (req, res) {
 };
 
 exports.blogList = function (req, res) {
+  var page = req.query.page;
   var queryObj = req.params.id ? {author: req.params.id} : {};
   Blog
     .find(queryObj, {__v: 0})
@@ -61,6 +62,8 @@ exports.blogList = function (req, res) {
       select: {username: 1, _id: 1}
     })
     .sort({createDate: "desc"})
+    .skip((page-1)*10)
+    .limit(10)
     .lean(true)
     .exec(function (err, blogs) {
       if (err) {

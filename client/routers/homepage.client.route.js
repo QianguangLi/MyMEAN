@@ -47,6 +47,7 @@ app.config(function ($routeProvider, $locationProvider) {
     .when('/signin', {templateUrl: 'views/signin/signin.ejs'})
     .when('/blog', {templateUrl: 'views/blogs/bloglist.ejs'})
     .otherwise({redirectTo: '/'});
+  // $locationProvider.html5Mode(true);
 });
 
 app.config(function ($routeProvider, $locationProvider) {
