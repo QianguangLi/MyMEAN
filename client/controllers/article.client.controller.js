@@ -5,7 +5,7 @@ app.controller("ArtileController", function ($scope, $http, $window, $rootScope,
   console.log($routeParams.id);
   console.log($routeParams.page);
 
-  var blogListUrl = $routeParams.id === undefined ? "/article/list?page=1" : "/article/list/"+$routeParams.id+"?page=1";
+  var blogListUrl = $routeParams.id === undefined ? "api/article/list?page=1" : "api/article/list/"+$routeParams.id+"?page=1";
   $http.get(blogListUrl)
     .then(function (response) {
       $scope.blogs = response.data.blogs;
@@ -13,9 +13,9 @@ app.controller("ArtileController", function ($scope, $http, $window, $rootScope,
 
   $scope.addArticle = function () {
     if ($rootScope.isLogin) {
-      $window.location.href = "#/blog/add";
+      $window.location.href = "/blog/add";
     } else {
-      $window.location.href = "/#/signin";
+      $window.location.href = "/signin";
     }
   }
 
@@ -28,12 +28,12 @@ app.controller("ArtileController", function ($scope, $http, $window, $rootScope,
 
   $scope.addBlog = function () {
     var blog = $scope.blog;
-    $http.post("/article/add", blog)
+    $http.post("api/article/add", blog)
       .then(function (response) {
         if (response.data.code !== 200) {
           alert(response.data.message);
         } else {
-          $window.location.href = "/#/blog"
+          $window.location.href = "/blog"
         }
       });
   }

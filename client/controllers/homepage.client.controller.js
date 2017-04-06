@@ -5,7 +5,7 @@ app.controller("HomePageController", function ($scope, $http, $window, AuthServi
 
   $scope.showSign = !$rootScope.isLogin;
 
-  $http.get("/getBanerUrl")
+  $http.get("api/getBanerUrl")
     .then(function (response) {
       $scope.name = response.data.banerUrl;
     });
@@ -37,13 +37,13 @@ app.controller("HomePageController", function ($scope, $http, $window, AuthServi
       $scope.confirmpasswordErrMsg = "";
     }
 
-    $http.post("/signup", user)
+    $http.post("api/signup", user)
       .then(function (response) {
         if (response.data.errmsg) {
           console.log(response);
-          $window.location.href = "/#/signup";
+          $window.location.href = "/signup";
         } else {
-          $window.location.href = "/#/signin";
+          $window.location.href = "/signin";
         }
       });
   }
@@ -65,7 +65,7 @@ app.controller("HomePageController", function ($scope, $http, $window, AuthServi
     AuthService.login(user, function (isLogin, res) {
       if (!isLogin) {
         $scope.signinerrmsg = res;
-        $window.location.href = "#/signin";
+        $window.location.href = "/signin";
       } else {
         $window.location.href = $window.document.referrer;
       }
@@ -75,7 +75,7 @@ app.controller("HomePageController", function ($scope, $http, $window, AuthServi
   $scope.signout = function () {
     var logout = confirm("确认退出?")
     if (logout) {
-      $http.get("/logout", function (err, data) {
+      $http.get("api/logout", function (err, data) {
         if (!err) {
           $rootScope.isLogin = false;
           $rootScope.user = null;

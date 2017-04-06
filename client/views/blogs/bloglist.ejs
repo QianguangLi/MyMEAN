@@ -4,7 +4,7 @@
         <button ng-click="addArticle()">写博客</button>
     </div>
     <br>
-    <a href="#/blog?page=1">全部</a>
+    <a href="/blog?page=1">全部</a>
     <div>
         <table border="1" bordercolor="gray">
             <tr>
@@ -19,13 +19,13 @@
                 <td>{{blog.title}}</td>
                 <td>{{blog.content}}</td>
                 <td>
-                    <a href="#/blog/{{blog.author._id}}?page=1">{{blog.author.username}}</a>
+                    <a href="/blog/{{blog.author._id}}?page=1">{{blog.author.username}}</a>
                 </td>
                 <td>{{blog.createDate}}</td>
                 <td>{{blog.updateDate}}</td>
                 <td>
-                    <a href="#/blog/details/{{blog._id}}">详细</a>
-                    <a ng-if="user._id === blog.author._id" href="#/blog/edit/{{blog._id}}">修改</a>
+                    <a href="/blog/details/{{blog._id}}">详细</a>
+                    <a ng-if="user._id === blog.author._id" href="/blog/edit/{{blog._id}}">修改</a>
                     <button ng-if="user._id === blog.author._id" ng-click="delBlog()">删除</button>
                 </td>
             </tr>

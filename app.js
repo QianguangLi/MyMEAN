@@ -50,9 +50,16 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use('/', index);
-app.use('/article', article);
-app.use('/users', users);
+app.use(function (req, res, next) {
+  if (req.path.indexOf("/api") >= 0) {
+    next();
+  } else {
+    res.render("index");
+  }
+})
+app.use('/api/', index);
+app.use('/api/article', article);
+// app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

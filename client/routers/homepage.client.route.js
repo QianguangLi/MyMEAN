@@ -7,7 +7,7 @@ var app = angular.module(appName, ['ngRoute']);
 app.factory("AuthService", function ($http, $rootScope) {
   var service = {};
   service.login = function (user, callback) {
-    $http.post("/signin", user)
+    $http.post("api/signin", user)
       .then(function (response) {
         console.log(response);
         if (response.data.errmsg) {
@@ -18,7 +18,7 @@ app.factory("AuthService", function ($http, $rootScope) {
       });
   }
   service.isAuthorized = function (cb) {
-    $http.get("/isSignin")
+    $http.get("api/isSignin")
       .then(function (response) {
         if (response.data.isLogin) {
           $rootScope.isLogin = true;
@@ -47,7 +47,7 @@ app.config(function ($routeProvider, $locationProvider) {
     .when('/signin', {templateUrl: 'views/signin/signin.ejs'})
     .when('/blog', {templateUrl: 'views/blogs/bloglist.ejs'})
     .otherwise({redirectTo: '/'});
-  // $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(true);
 });
 
 app.config(function ($routeProvider, $locationProvider) {

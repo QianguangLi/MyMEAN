@@ -6,7 +6,7 @@ app.controller("ArtileEditController", function ($scope, $routeParams, $http, $w
     title: "",
     content: ""
   }
-  $http.get("/article/edit/" + $routeParams.id)
+  $http.get("api/article/edit/" + $routeParams.id)
     .then(function (response) {
       if (response.data.code !== 200) {
         alert(response.data.message);
@@ -17,13 +17,13 @@ app.controller("ArtileEditController", function ($scope, $routeParams, $http, $w
 
   $scope.updateBlog = function () {
     var blog = $scope.blog;
-    $http.post("/article/edit/"+blog._id, blog)
+    $http.post("api/article/edit/"+blog._id, blog)
       .then(function (response) {
         if (response.data.code !== 200) {
           alert(response.data.message);
         } else {
           alert("修改成功");
-          $window.location.href = "/#/blog"
+          $window.location.href = "/blog"
         }
       });
   }
