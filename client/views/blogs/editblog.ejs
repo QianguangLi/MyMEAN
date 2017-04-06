@@ -1,0 +1,8 @@
+<section ng-controller="ArtileEditController">
+    修改 {{blog.title}} 博客
+    <div>
+        标题:<input type="text" ng-model="blog.title"> <br>
+        内容:<textarea rows="8" ng-model="blog.content" style="width:40%"></textarea> <br>
+        <input type="submit" ng-click="updateBlog()" value="修改">
+    </div>
+</section>

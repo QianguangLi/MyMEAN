@@ -7,3 +7,11 @@ exports.requiresLogin = function (req, res, next) {
   }
   next();
 }
+
+exports.hasAuthenticate = function (req, res, next) {
+  if (req.session.user._id === req.body.author._id) {
+    next();
+  } else {
+    res.json({code: 402, message: "没有权限"})
+  }
+}

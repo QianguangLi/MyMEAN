@@ -11,7 +11,8 @@
                 <td>标题</td>
                 <td>内容摘要</td>
                 <td>作者</td>
-                <td>日期</td>
+                <td>创建日期</td>
+                <td>最后更新日期</td>
                 <td>操作</td>
             </tr>
             <tr ng-repeat="blog in blogs">
@@ -21,9 +22,11 @@
                     <a href="/#/blog/{{blog.author._id}}">{{blog.author.username}}</a>
                 </td>
                 <td>{{blog.createDate}}</td>
+                <td>{{blog.updateDate}}</td>
                 <td>
-                    <a href="#">修改</a>
-                    <a href="#">删除</a>
+                    <a href="/#/blog/details/{{blog._id}}">详细</a>
+                    <a ng-if="user._id === blog.author._id" href="/#/blog/edit/{{blog._id}}">修改</a>
+                    <button ng-if="user._id === blog.author._id" ng-click="delBlog()">删除</button>
                 </td>
             </tr>
         </table>

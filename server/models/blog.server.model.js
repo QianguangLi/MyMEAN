@@ -3,6 +3,7 @@
  */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var dateformat = require('dateformat');
 
 var BlogSchema = new Schema({
   title:{
@@ -20,15 +21,21 @@ var BlogSchema = new Schema({
   },
   createDate: {
     type: Date,
-    default: Date.now()
+    default: Date.now
   },
   updateDate: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   }
 });
 
 BlogSchema.pre("save", function (next) {
+  console.log("mongoose pre --save")
+  next();
+});
+
+BlogSchema.pre("update", function (next) {
+  console.log("mongoose pre --update")
   next();
 });
 

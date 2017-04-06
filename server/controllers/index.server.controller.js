@@ -49,12 +49,17 @@ exports.signup = function (req, res) {
   })
 }
 
+exports.logout = function (req, res) {
+  delete req.session.user;
+  res.json({code: 200, message: "退出成功"});
+}
+
 exports.signin = function (req, res) {
   delete req.body.confirmpassword;
   passport.authenticate('local', function (err, user) {
     console.log(user);
     if (!user) {
-      res.json({errCode:300007, errmsg:"密码错误"});
+      res.json({errCode: 300007, errmsg: "密码错误"});
       return;
     }
     req.session.user = user;

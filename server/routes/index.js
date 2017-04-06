@@ -13,4 +13,6 @@ router.post('/signin', indexController.signin);
 
 router.get('/isSignin', indexController.checkLogin, indexController.isSignined);
 
+router.get('/logout', indexController.checkLogin, indexController.logout);
+
 module.exports = router;

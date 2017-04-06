@@ -6,7 +6,6 @@ app.controller("ArtileController", function ($scope, $http, $window, $rootScope,
   var blogListUrl = $routeParams.id === undefined ? "/article/list" : "/article/list/"+$routeParams.id;
   $http.get(blogListUrl)
     .then(function (response) {
-      console.log(response);
       $scope.blogs = response.data.blogs;
     });
 
@@ -23,6 +22,8 @@ app.controller("ArtileController", function ($scope, $http, $window, $rootScope,
     content: ""
   }
 
+  // $scope.user = $rootScope.user;
+
   $scope.addBlog = function () {
     var blog = $scope.blog;
     $http.post("/article/add", blog)
@@ -33,6 +34,10 @@ app.controller("ArtileController", function ($scope, $http, $window, $rootScope,
           $window.location.href = "/#/blog"
         }
       });
+  }
+
+  $scope.delBlog = function () {
+
   }
 });
 

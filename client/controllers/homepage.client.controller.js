@@ -73,6 +73,15 @@ app.controller("HomePageController", function ($scope, $http, $window, AuthServi
   }
 
   $scope.signout = function () {
-    console.log("signout");
+    var logout = confirm("确认退出?")
+    if (logout) {
+      $http.get("/logout", function (err, data) {
+        if (!err) {
+          $rootScope.isLogin = false;
+          $rootScope.user = null;
+          $window.location.href = "/#"
+        }
+      });
+    }
   }
 });
