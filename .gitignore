@@ -32,6 +32,7 @@ jspm_packages
 bower_components
 /public/lib
 /.idea
+mongo-data
 
 # Optional npm cache directory
 .npm
