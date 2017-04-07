@@ -4,6 +4,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var dateformat = require('dateformat');
+var mongoosePaginate = require('mongoose-paginate');
 
 var BlogSchema = new Schema({
   title:{
@@ -38,5 +39,7 @@ BlogSchema.pre("update", function (next) {
   console.log("mongoose pre --update")
   next();
 });
+
+BlogSchema.plugin(mongoosePaginate);
 
 mongoose.model("Blog", BlogSchema);

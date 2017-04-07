@@ -2,13 +2,18 @@
  * Created by LQG on 2017/4/1.
  */
 app.controller("ArtileController", function ($scope, $http, $window, $rootScope, $routeParams) {
-  console.log($routeParams.id);
-  console.log($routeParams.page);
 
-  var blogListUrl = $routeParams.id === undefined ? "api/article/list?page=1" : "api/article/list/"+$routeParams.id+"?page=1";
+  var blogListUrl = $routeParams.id === undefined ? "api/article/list?page=" + $routeParams.page : "api/article/list/" + $routeParams.id + "?page=" + $routeParams.page;
   $http.get(blogListUrl)
     .then(function (response) {
       $scope.blogs = response.data.blogs;
+      $scope.totalPage = response.data.totalPage;
+      var pages = new Array(response.data.totalPage);
+      for (var i = 0; i < response.data.totalPage; i++) {
+        pages[i] = i + 1;
+      }
+      $scope.pathname = $window.location.pathname;
+      $scope.pages = pages;
     });
 
   $scope.addArticle = function () {

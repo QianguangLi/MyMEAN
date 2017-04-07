@@ -1,3 +1,4 @@
+<style> a{ text-decoration:none}</style>
 <section ng-controller="ArtileController">
     <div>
         博客列表
@@ -30,5 +31,8 @@
                 </td>
             </tr>
         </table>
+        <div>
+            第 <a  ng-repeat="page in pages" href="{{pathname}}?page={{page}}"> {{page}} </a> 页 总页数:{{totalPage}}
+        </div>
     </div>
 </section>
